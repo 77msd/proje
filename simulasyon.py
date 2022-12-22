@@ -44,3 +44,23 @@ def main() -> None:
     clock: pygame.time.Clock = pygame.time.Clock()
 
     
+    while not user_quit:
+        # Saniyede 30 kez döngü
+        clock.tick(30)
+
+        for e in pygame.event.get():
+            # Çıkma seçimini işleyin.
+            if e.type == pygame.QUIT:
+                user_quit = True
+            # Açıyı ayarlamak ve çekim yapmak için işlem tuşları.
+            elif e.type == pygame.KEYDOWN and not shoot:
+                if e.__dict__["key"] == pygame.K_UP and angle < 90:
+                    angle += 10
+                elif e.__dict__["key"] == pygame.K_DOWN and angle >= 10:
+                    angle -= 10
+                elif e.__dict__["key"] == pygame.K_RIGHT:
+                    speed += 10
+                elif e.__dict__["key"] == pygame.K_LEFT and speed >= 10:
+                    speed -= 10
+                elif e.__dict__["key"] == pygame.K_SPACE:
+                    shoot = True
