@@ -28,4 +28,19 @@ def main() -> None:
     time: float = 0
     shoot: bool = False
     angle: float = 0 
-    speed: float = 100 
+    speed: float = 100
+
+
+    # Gerekenleri Kur.
+    screen = make_window(SCREEN_WIDTH, SCREEN_HEIGHT, "Angle: 0 Speed: 200")
+    background = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
+    background.fill((222, 237, 244))
+    projectile = pygame.image.load("large_ball.png")
+    projectile = projectile.convert_alpha()
+    flag = pygame.image.load("flag.png")
+    flag = flag.convert_alpha()
+    start_y = screen.get_height() - projectile.get_height()
+    y = start_y
+    clock: pygame.time.Clock = pygame.time.Clock()
+
+    
