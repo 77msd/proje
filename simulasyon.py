@@ -3,7 +3,7 @@ import pygame
 pygame.init()
 
 def make_window(width: int, height: int, caption: str) -> pygame.Surface:
-    """Create and return a pygame window."""
+    """Bir pygame penceresi oluşturun ve döndürün."""
     screen: pygame.Surface
     screen = pygame.display.set_mode((width, height))
     pygame.display.set_caption(caption)
@@ -28,4 +28,62 @@ def main() -> None:
     time: float = 0
     shoot: bool = False
     angle: float = 0 
-    speed: float = 100 
+    speed: float = 100
+
+
+    # Gerekenleri Kur.
+    screen = make_window(SCREEN_WIDTH, SCREEN_HEIGHT, "Angle: 0 Speed: 200")
+    background = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
+    background.fill((222, 237, 244))
+    projectile = pygame.image.load("large_ball.png")
+    projectile = projectile.convert_alpha()
+    flag = pygame.image.load("flag.png")
+    flag = flag.convert_alpha()
+    start_y = screen.get_height() - projectile.get_height()
+    y = start_y
+    clock: pygame.time.Clock = pygame.time.Clock()
+
+    
+    while not user_quit:
+        # Saniyede 30 kez döngü
+        clock.tick(30)
+
+        for e in pygame.event.get():
+            # Çıkma seçimini işleyin.
+            if e.type == pygame.QUIT:
+                user_quit = True
+            # Açıyı ayarlamak ve çekim yapmak için işlem tuşları.
+            elif e.type == pygame.KEYDOWN and not shoot:
+                if e.__dict__["key"] == pygame.K_UP and angle < 90:
+                    angle += 10
+                elif e.__dict__["key"] == pygame.K_DOWN and angle >= 10:
+                    angle -= 10
+                elif e.__dict__["key"] == pygame.K_RIGHT:
+                    speed += 10
+                elif e.__dict__["key"] == pygame.K_LEFT and speed >= 10:
+                    speed -= 10
+                elif e.__dict__["key"] == pygame.K_SPACE:
+                    shoot = True
+
+                    # Mermiyi havada hareket ettirmek için
+        if shoot:
+            # Artış süresi
+            time += 1/15
+            #Konumu hesaplamak için
+            x = (start_x
+                        + math.cos(math.radians(angle)) * speed * time)
+            y = (start_y
+                        - (math.sin(math.radians(angle)) * speed * time)
+                        + .5 * 72 * time**2)
+                        
+# Yere çarpıp çarpmadığını kontrol edelim
+            if y + projectile.get_height() >= screen.get_height():
+                time = 0
+                shoot = False
+# Düştüğü yere bayrak koyalım
+                background.blit(flag, (x, screen.get_height() - flag.get_height()))
+# Bayrak koyduktan sonra başlangıca dönsün
+
+                x = start_x
+                y = start_y
+
