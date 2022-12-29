@@ -64,3 +64,14 @@ def main() -> None:
                     speed -= 10
                 elif e.__dict__["key"] == pygame.K_SPACE:
                     shoot = True
+
+                    # Mermiyi havada hareket ettirmek için
+        if shoot:
+            # Artış süresi
+            time += 1/15
+            #Konumu hesaplamak için
+            x = (start_x
+                        + math.cos(math.radians(angle)) * speed * time)
+            y = (start_y
+                        - (math.sin(math.radians(angle)) * speed * time)
+                        + .5 * 72 * time**2)
