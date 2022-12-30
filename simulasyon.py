@@ -87,3 +87,12 @@ def main() -> None:
                 x = start_x
                 y = start_y
 
+ # Ekrana çizin ve gösterin.
+        pygame.display.set_caption("Angle: " + str(angle) + " Speed: " + str(speed))
+        screen.blit(background, (0, 0))
+        screen.blit(projectile, (x, y))
+        pygame.display.flip()
+         
+    pygame.quit()
+
+main()
