@@ -44,6 +44,11 @@ def main() -> None:
     havanX_change = 0
     havanY_change = 0
 
+    #SİMULASYONA İCON EKLEME 
+    icon = pygame.image.load("top9.png")
+    pygame.display.set_icon(icon)
+
+
     projectile = projectile.convert_alpha()
     flag = pygame.image.load("ottoflg.png")
     flag = flag.convert_alpha()
