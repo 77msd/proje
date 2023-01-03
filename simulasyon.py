@@ -13,8 +13,8 @@ def make_window(width: int, height: int, caption: str) -> pygame.Surface:
 def main() -> None:
     """GÖRÜNTÜYÜ HAREKET ETTİRMEK İÇİN."""
     # DEĞİŞKENLERE AÇIKLAMA EKLEME
-    SCREEN_HEIGHT: int = 480
-    SCREEN_WIDTH: int = 640
+    SCREEN_HEIGHT: int = 720
+    SCREEN_WIDTH: int = 1280
     screen: pygame.Surface
     background: pygame.Surface
     user_quit: bool = False
@@ -34,18 +34,18 @@ def main() -> None:
     # Gerekenleri Kur.
     screen = make_window(SCREEN_WIDTH, SCREEN_HEIGHT, "Angle: 0 Speed: 200")
     background = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
-    background.fill((222, 237, 244))
+    background= pygame.image.load("arka_plan.png")
     projectile = pygame.image.load("large_ball.png")
     #HAVAN EKLEYELİM #
     havanImg = pygame.image.load("top9.png")
     havanX = -30
-    havanY = 550
+    havanY = 673
     
     havanX_change = 0
     havanY_change = 0
 
     projectile = projectile.convert_alpha()
-    flag = pygame.image.load("flag.png")
+    flag = pygame.image.load("ottoflg.png")
     flag = flag.convert_alpha()
     start_y = screen.get_height() - projectile.get_height()
     y = start_y
@@ -63,9 +63,9 @@ def main() -> None:
             # Açıyı ayarlamak ve çekim yapmak için işlem tuşları.
             elif e.type == pygame.KEYDOWN and not shoot:
                 if e.__dict__["key"] == pygame.K_UP and angle < 90:
-                    angle += 10
+                    angle += 5
                 elif e.__dict__["key"] == pygame.K_DOWN and angle >= 10:
-                    angle -= 10
+                    angle -= 5
                 elif e.__dict__["key"] == pygame.K_RIGHT:
                     speed += 10
                 elif e.__dict__["key"] == pygame.K_LEFT and speed >= 10:
