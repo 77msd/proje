@@ -36,6 +36,14 @@ def main() -> None:
     background = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
     background.fill((222, 237, 244))
     projectile = pygame.image.load("large_ball.png")
+    #HAVAN EKLEYELİM #
+    havanImg = pygame.image.load("top9.png")
+    havanX = -30
+    havanY = 550
+    
+    havanX_change = 0
+    havanY_change = 0
+
     projectile = projectile.convert_alpha()
     flag = pygame.image.load("flag.png")
     flag = flag.convert_alpha()
@@ -62,6 +70,27 @@ def main() -> None:
                     speed += 10
                 elif e.__dict__["key"] == pygame.K_LEFT and speed >= 10:
                     speed -= 10
+                # HAVANI YATAY VE DÜŞEY YÖNDE HAREKET ETTİRMEK #
+
+                elif e.__dict__["key"] == pygame.K_w:
+                    havanY += -10
+                    start_y += -10  
+                    y += -10 
+                elif e.__dict__["key"] == pygame.K_s:
+                    havanY += 10
+                    start_y += 10
+                    y += 10
+                elif e.__dict__["key"] == pygame.K_d:
+                    havanX += 10
+                    start_x += 10
+                    x  += 10
+                elif e.__dict__["key"] == pygame.K_a:
+                    havanX += -10
+                    start_x += -10
+                    x += -10
+
+
+
                 elif e.__dict__["key"] == pygame.K_SPACE:
                     shoot = True
 
@@ -91,6 +120,8 @@ def main() -> None:
         pygame.display.set_caption("Angle: " + str(angle) + " Speed: " + str(speed))
         screen.blit(background, (0, 0))
         screen.blit(projectile, (x, y))
+        screen.blit(havanImg ,(havanX ,havanY))
+        
         pygame.display.flip()
          
     pygame.quit()
