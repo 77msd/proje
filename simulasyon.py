@@ -103,12 +103,18 @@ def main() -> None:
         if shoot:
             # Artış süresi
             time += 1/15
+            #x eksenindde ne kadar gittiğini öğrenmek için
+
+            print(math.cos(math.radians(angle)) * speed * time) 
+            print("metre x ekseninde yol aldı")
             #Konumu hesaplamak için
             x = (start_x
                         + math.cos(math.radians(angle)) * speed * time)
             y = (start_y
                         - (math.sin(math.radians(angle)) * speed * time)
                         + .5 * 72 * time**2)
+
+
                         
 # Yere çarpıp çarpmadığını kontrol edelim
             if y + projectile.get_height() >= screen.get_height():
