@@ -132,6 +132,18 @@ def main() -> None:
                 background.blit(flag, (x, screen.get_height() - flag.get_height()))
 # Bayrak koyduktan sonra başlangıca dönsün
 
+                #Karıştırıcıyı başlat
+                mixer.init()
+
+                #ses dosyasını yükle
+                mixer.music.load('landing_effect.mp3')
+
+                #Tercih edilen ses seviyesini ayarla
+                mixer.music.set_volume(5)
+
+                #Müziği çal
+                mixer.music.play()
+
                 x = start_x
                 y = start_y
 
@@ -146,3 +158,5 @@ def main() -> None:
     pygame.quit()
 
 main()
+
+
