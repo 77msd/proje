@@ -116,6 +116,11 @@ def main() -> None:
         if shoot:
             # Artış süresi
             time += 1/15
+
+            # merminin x ekseninde aldığı yolu hesaplamak için
+            print(math.cos(math.radians(angle)) * speed * time)
+            print("metre x ekseninde yol aldı")
+
             #Konumu hesaplamak için
             x = (start_x
                         + math.cos(math.radians(angle)) * speed * time)
@@ -158,5 +163,3 @@ def main() -> None:
     pygame.quit()
 
 main()
-
-
