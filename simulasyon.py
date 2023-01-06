@@ -1,5 +1,6 @@
 import math
 import pygame
+from pygame import mixer 
 pygame.init()
 
 def make_window(width: int, height: int, caption: str) -> pygame.Surface:
@@ -99,22 +100,28 @@ def main() -> None:
                 elif e.__dict__["key"] == pygame.K_SPACE:
                     shoot = True
 
+                    #Karıştırıcıyı başlat
+                    mixer.init()
+
+                    #ses dosyasını yükle
+                    mixer.music.load('cannon_shot.mp3')
+
+                    #Tercih edilen ses seviyesini ayarla
+                    mixer.music.set_volume(5)
+
+                    #Müziği çal
+                    mixer.music.play()
+
                     # Mermiyi havada hareket ettirmek için
         if shoot:
             # Artış süresi
             time += 1/15
-            #x eksenindde ne kadar gittiğini öğrenmek için
-
-            print(math.cos(math.radians(angle)) * speed * time) 
-            print("metre x ekseninde yol aldı")
             #Konumu hesaplamak için
             x = (start_x
                         + math.cos(math.radians(angle)) * speed * time)
             y = (start_y
                         - (math.sin(math.radians(angle)) * speed * time)
                         + .5 * 72 * time**2)
-
-
                         
 # Yere çarpıp çarpmadığını kontrol edelim
             if y + projectile.get_height() >= screen.get_height():
@@ -134,7 +141,7 @@ def main() -> None:
         screen.blit(havanImg ,(havanX ,havanY))
         
         pygame.display.flip()
-         
+
     pygame.quit()
 
 main()
