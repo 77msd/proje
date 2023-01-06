@@ -121,7 +121,8 @@ def main() -> None:
                         + math.cos(math.radians(angle)) * speed * time)
             y = (start_y
                         - (math.sin(math.radians(angle)) * speed * time)
-                        + .5 * 72 * time**2)
+                        + .5 * 98.1 * time**2)
+                # BURADA YER ÇEKİMİNİ 98.1 ALIYORUZ  VE 1/2 X G X ZAMANIN KARESİ FORMÜLÜNDEN YARARLANIYORUZ. #
                         
 # Yere çarpıp çarpmadığını kontrol edelim
             if y + projectile.get_height() >= screen.get_height():
