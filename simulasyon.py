@@ -118,8 +118,8 @@ def main() -> None:
             time += 1/15
 
             # merminin x ekseninde aldığı yolu hesaplamak için
-            print(math.cos(math.radians(angle)) * speed * time)
-            print("metre x ekseninde yol aldı")
+            print(round(math.cos(math.radians(angle)) * speed * time), "metre x ekseninde yol aldı.")
+            
 
             #Konumu hesaplamak için
             x = (start_x
