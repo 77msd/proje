@@ -11,6 +11,12 @@ from button import Button
 
 pygame.init()
 
+check_errors = pygame.init()
+if check_errors[1] == check_errors:
+    print("An error has occured!")
+else:
+    print("Game has initilized successfully!")
+
 SCREEN = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("Menu")
 
