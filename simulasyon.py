@@ -35,7 +35,7 @@ def main() -> None:
     # Gerekenleri Kur.
     screen = make_window(SCREEN_WIDTH, SCREEN_HEIGHT, "Angle: 0 Speed: 200")
     background = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
-    background= pygame.image.load("arka_plan.png")
+    background= pygame.image.load("olcekli_bg.png")
     projectile = pygame.image.load("large_ball.png")
     #HAVAN EKLEYELİM #
     havanImg = pygame.image.load("top9.png")
