@@ -73,28 +73,28 @@ def play():
 
         pygame.display.update()
     
-def options():
+def guide():
     while True:
-        OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
+        GUIDE_MOUSE_POS = pygame.mouse.get_pos()
 
         SCREEN.fill("white")
 
-        OPTIONS_TEXT = get_font(45).render("This is the OPTIONS screen.", True, "Black")
-        OPTIONS_RECT = OPTIONS_TEXT.get_rect(center=(640, 260))
-        SCREEN.blit(OPTIONS_TEXT, OPTIONS_RECT)
+        GUIDE_TEXT = get_font(45).render("This is the GUIDE screen.", True, "Black")
+        GUIDE_RECT = GUIDE_TEXT.get_rect(center=(640, 260))
+        SCREEN.blit(GUIDE_TEXT, GUIDE_RECT)
 
-        OPTIONS_BACK = Button(image=None, pos=(640, 460), 
+        GUIDE_BACK = Button(image=None, pos=(640, 460), 
                             text_input="BACK", font=get_font(75), base_color="Black", hovering_color="Green")
 
-        OPTIONS_BACK.changeColor(OPTIONS_MOUSE_POS)
-        OPTIONS_BACK.update(SCREEN)
+        GUIDE_BACK.changeColor(GUIDE_MOUSE_POS)
+        GUIDE_BACK.update(SCREEN)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if OPTIONS_BACK.checkForInput(OPTIONS_MOUSE_POS):
+                if GUIDE_BACK.checkForInput(GUIDE_MOUSE_POS):
                     main_menu()
 
         pygame.display.update()
@@ -110,14 +110,14 @@ def main_menu():
 
         PLAY_BUTTON = Button(image=pygame.image.load("şablonlar/Play Rect.png"), pos=(640, 250), 
                             text_input="PLAY", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
-        OPTIONS_BUTTON = Button(image=pygame.image.load("şablonlar/Options Rect.png"), pos=(640, 400), 
-                            text_input="OPTIONS", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+        GUIDE_BUTTON = Button(image=pygame.image.load("şablonlar/Guide Rect.png"), pos=(640, 400), 
+                            text_input="GUIDE", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
         QUIT_BUTTON = Button(image=pygame.image.load("şablonlar/Quit Rect.png"), pos=(640, 550), 
                             text_input="QUIT", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
 
         SCREEN.blit(MENU_TEXT, MENU_RECT)
 
-        for button in [PLAY_BUTTON, OPTIONS_BUTTON, QUIT_BUTTON]:
+        for button in [PLAY_BUTTON, GUIDE_BUTTON, QUIT_BUTTON]:
             button.changeColor(MENU_MOUSE_POS)
             button.update(SCREEN)
         
@@ -128,8 +128,8 @@ def main_menu():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
                     play()
-                if OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
-                    options()
+                if GUIDE_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    guide()
                 if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
                     pygame.quit()
                     sys.exit()
