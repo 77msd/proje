@@ -1,5 +1,6 @@
 import math
 import pygame
+
 from pygame.locals import*
 
 from pygame import mixer 
@@ -76,14 +77,14 @@ def play():
 def guide():
     while True:
         GUIDE_MOUSE_POS = pygame.mouse.get_pos()
+        kılavuz =pygame.image.load("kılavuz.png")
+        #SCREEN.fill("white")
 
-        SCREEN.fill("white")
+        # GUIDE_TEXT = get_font(45).render("This is the GUIDE screen.", True, "Black")
+        # GUIDE_RECT = GUIDE_TEXT.get_rect(center=(640, 460))
+        SCREEN.blit(kılavuz,(0,0))
 
-        GUIDE_TEXT = get_font(45).render("This is the GUIDE screen.", True, "Black")
-        GUIDE_RECT = GUIDE_TEXT.get_rect(center=(640, 260))
-        SCREEN.blit(GUIDE_TEXT, GUIDE_RECT)
-
-        GUIDE_BACK = Button(image=None, pos=(640, 460), 
+        GUIDE_BACK = Button(image=None, pos=(640, 680), 
                             text_input="BACK", font=get_font(75), base_color="Black", hovering_color="Green")
 
         GUIDE_BACK.changeColor(GUIDE_MOUSE_POS)
