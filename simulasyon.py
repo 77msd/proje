@@ -22,7 +22,7 @@ def main() -> None:
     e: pygame.event.Event
     projectile: pygame.Surface
     flag: pygame.Surface
-    start_x: float = 0
+    start_x: float = -8
     start_y: float = -100
     x: float = start_x
     y: float = start_y
@@ -35,11 +35,11 @@ def main() -> None:
     # Gerekenleri Kur.
     screen = make_window(SCREEN_WIDTH, SCREEN_HEIGHT, "Angle: 0 Speed: 200")
     background = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
-    background= pygame.image.load("olcekli_bg.png")
+    background= pygame.image.load("arka_plan.png")
     projectile = pygame.image.load("large_ball.png")
     #HAVAN EKLEYELİM #
     havanImg = pygame.image.load("top9.png")
-    havanX = -30
+    havanX = -38
     havanY = 673
     
     havanX_change = 0
@@ -94,6 +94,14 @@ def main() -> None:
                     havanX += -10
                     start_x += -10
                     x += -10
+                
+                elif e.__dict__["key"] == pygame.K_ESCAPE:
+                    
+
+                    import main
+                    open(main)
+                    pygame.init()
+                    
 
 
 
