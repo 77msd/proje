@@ -2,8 +2,6 @@ import math
 import pygame
 from pygame import mixer 
 pygame.init()
-# import PIL
-# import time
 
 def make_window(width: int, height: int, caption: str) -> pygame.Surface:
     """Bir pygame penceresi oluşturun ve döndürün."""
@@ -24,7 +22,7 @@ def main() -> None:
     e: pygame.event.Event
     projectile: pygame.Surface
     flag: pygame.Surface
-    start_x: float = 0
+    start_x: float = -8
     start_y: float = -100
     x: float = start_x
     y: float = start_y
@@ -37,28 +35,19 @@ def main() -> None:
     # Gerekenleri Kur.
     screen = make_window(SCREEN_WIDTH, SCREEN_HEIGHT, "Angle: 0 Speed: 200")
     background = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
-    background= pygame.image.load("olcekli_bg.png")
+    background= pygame.image.load("arka_plan.png")
     projectile = pygame.image.load("large_ball.png")
     #HAVAN EKLEYELİM #
     havanImg = pygame.image.load("top9.png")
-    havanX = -30
+    havanX = -38
     havanY = 673
     
     havanX_change = 0
     havanY_change = 0
 
-    ates = pygame.image.load("resizeexplosion.png").convert_alpha()
-    
-    atesX = 35
-    atesY = 653
-
-    atesX_change = 0
-    atesY_change = 0
-
-    #SİMULASYONA İCON EKLEME
+    #SİMULASYONA İCON EKLEME 
     icon = pygame.image.load("top9.png")
     pygame.display.set_icon(icon)
-
 
 
     projectile = projectile.convert_alpha()
@@ -68,7 +57,7 @@ def main() -> None:
     y = start_y
     clock: pygame.time.Clock = pygame.time.Clock()
 
-
+    
     while not user_quit:
         # Saniyede 30 kez döngü
         clock.tick(30)
@@ -93,70 +82,43 @@ def main() -> None:
                     havanY += -10
                     start_y += -10  
                     y += -10 
-                    
                 elif e.__dict__["key"] == pygame.K_s:
                     havanY += 10
                     start_y += 10
                     y += 10
-                    
                 elif e.__dict__["key"] == pygame.K_d:
                     havanX += 10
                     start_x += 10
                     x  += 10
-                    
                 elif e.__dict__["key"] == pygame.K_a:
                     havanX += -10
                     start_x += -10
                     x += -10
+                
+                elif e.__dict__["key"] == pygame.K_ESCAPE:
                     
+
+                    import main
+                    open(main)
+                    pygame.init()
+                    
+
 
 
                 elif e.__dict__["key"] == pygame.K_SPACE:
                     shoot = True
-                    # döngü başlat
-                    running = False
-                    while running:
-                        for event in pygame.event.get():
-                            if event.type == pygame.QUIT:
-                                running = True
-                            keys = pygame.key.get_pressed()
-                            if keys[pygame.K_SPACE]:
-                            # efekt uygulamak için resmi renklendir
-                                image.fill((255, 0, 0), special_flags=pygame.BLEND_ADD)
-                                image = pygame.image.load("resizeexplosion.png")
-                            else:
-                                None
-                        # yenilenmiş resmi ekrana çiz
-                        screen.blit(image, (35,653))
-
-                        # ekranı güncelle
-                        pygame.display.flip()
-                        pygame.time.wait(0,1)
-
-
-                    # for event in pygame.event.get():
-                    #                         if event.type == pygame.QUIT:
-                    #                             running = False
-                    #                             ates.set_alpha(0)
-                    #                             screen.blit(ates, (400 - ates.get_width() / 2, 300 - ates.get_height() / 2))
-                    #                             pygame.display.flip()
-                    #                             time.sleep(0.1)
-                    #                             ates.set_alpha(0)
-                    #                             screen.blit(ates, (400 - ates.get_width() / 2, 300 - ates.get_height() / 2))
-                    #                             pygame.display.flip()               
 
                     #Karıştırıcıyı başlat
                     mixer.init()
 
-                        #ses dosyasını yükle
+                    #ses dosyasını yükle
                     mixer.music.load('cannon_shot.mp3')
 
-                        #Tercih edilen ses seviyesini ayarla
+                    #Tercih edilen ses seviyesini ayarla
                     mixer.music.set_volume(5)
 
-                        #Müziği çal
+                    #Müziği çal
                     mixer.music.play()
-
 
                     # Mermiyi havada hareket ettirmek için
         if shoot:
@@ -203,12 +165,9 @@ def main() -> None:
         screen.blit(background, (0, 0))
         screen.blit(projectile, (x, y))
         screen.blit(havanImg ,(havanX ,havanY))
-        screen.blit(ates, (atesX, atesY))
-        
         
         pygame.display.flip()
 
     pygame.quit()
-
 
 main()
