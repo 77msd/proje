@@ -28,12 +28,12 @@ def main() -> None:
     y: float = start_y
     time: float = 0
     shoot: bool = False
-    angle: float = 0 
-    speed: float = 100
+    angle: float = 45 
+    speed: float = 180
     gravity:float= 98.1
 
     # Gerekenleri Kur.
-    screen = make_window(SCREEN_WIDTH, SCREEN_HEIGHT, "Angle: 0 Speed: 100 ")
+    screen = make_window(SCREEN_WIDTH, SCREEN_HEIGHT, "Angle: 45 Speed: 180 ")
     background = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
     background= pygame.image.load("arka_plan.png")
     projectile = pygame.image.load("large_ball.png")
