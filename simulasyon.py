@@ -30,10 +30,10 @@ def main() -> None:
     shoot: bool = False
     angle: float = 0 
     speed: float = 100
-
+    gravity:float= 98.1
 
     # Gerekenleri Kur.
-    screen = make_window(SCREEN_WIDTH, SCREEN_HEIGHT, "Angle: 0 Speed: 200")
+    screen = make_window(SCREEN_WIDTH, SCREEN_HEIGHT, "Angle: 0 Speed: 100 ")
     background = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
     background= pygame.image.load("arka_plan.png")
     projectile = pygame.image.load("large_ball.png")
@@ -56,16 +56,19 @@ def main() -> None:
     start_y = screen.get_height() - projectile.get_height()
     y = start_y
     clock: pygame.time.Clock = pygame.time.Clock()
+    
 
     
     while not user_quit:
         # Saniyede 30 kez döngü
+         
         clock.tick(30)
 
         for e in pygame.event.get():
             # Çıkma seçimini işleyin.
             if e.type == pygame.QUIT:
                 user_quit = True
+             
             # Açıyı ayarlamak ve çekim yapmak için işlem tuşları.
             elif e.type == pygame.KEYDOWN and not shoot:
                 if e.__dict__["key"] == pygame.K_UP and angle < 90:
@@ -76,6 +79,13 @@ def main() -> None:
                     speed += 10
                 elif e.__dict__["key"] == pygame.K_LEFT and speed >= 10:
                     speed -= 10
+                # YERÇEKİMİNİ ARTIRIP AZALTMAK İÇİN
+
+                elif e.__dict__["key"] == pygame.K_u:
+                    gravity += 10
+                elif e.__dict__["key"] == pygame.K_j:
+                    gravity -= 10
+
                 # HAVANI YATAY VE DÜŞEY YÖNDE HAREKET ETTİRMEK #
 
                 elif e.__dict__["key"] == pygame.K_w:
@@ -101,12 +111,13 @@ def main() -> None:
                     import main
                     open(main)
                     pygame.init()
+
                     
-
-
+                
 
                 elif e.__dict__["key"] == pygame.K_SPACE:
                     shoot = True
+                    
 
                     #Karıştırıcıyı başlat
                     mixer.init()
@@ -124,7 +135,7 @@ def main() -> None:
         if shoot:
             # Artış süresi
             time += 1/15
-
+           
             # merminin x ekseninde aldığı yolu hesaplamak için
             print(round(math.cos(math.radians(angle)) * speed * time), "metre x ekseninde yol aldı.")
             
@@ -134,7 +145,7 @@ def main() -> None:
                         + math.cos(math.radians(angle)) * speed * time)
             y = (start_y
                         - (math.sin(math.radians(angle)) * speed * time)
-                        + .5 * 98.1 * time**2)
+                        + .5 * gravity * time**2)
                 # BURADA YER ÇEKİMİNİ 98.1 ALIYORUZ  VE 1/2 X G X ZAMANIN KARESİ FORMÜLÜNDEN YARARLANIYORUZ. #
                         
 # Yere çarpıp çarpmadığını kontrol edelim
@@ -161,7 +172,7 @@ def main() -> None:
                 y = start_y
 
  # Ekrana çizin ve gösterin.
-        pygame.display.set_caption("Angle: " + str(angle) + " Speed: " + str(speed))
+        pygame.display.set_caption("Angle: " + str(angle) + " Speed: " + str(speed) +     "  Gravity:  " + str(gravity)   )
         screen.blit(background, (0, 0))
         screen.blit(projectile, (x, y))
         screen.blit(havanImg ,(havanX ,havanY))
